@@ -109,6 +109,28 @@
       "minStock": 8,
       "supplier": "P&G Perú",
       "createdAt": "2026-10-06T14:00:00.000Z"
+    },
+    {
+      "sku": "ABR-004",
+      "name": "Gaseosa",
+      "category": "Bebidas",
+      "price": 100,
+      "stock": 20,
+      "minStock": 5,
+      "supplier": "Alicorp",
+      "createdAt": "2026-10-23T16:59:43.797Z",
+      "id": 11
+    },
+    {
+      "sku": "ABC-123",
+      "name": "PICKEOS",
+      "category": "Snacks",
+      "price": 40,
+      "stock": 2,
+      "minStock": 5,
+      "supplier": "Alicopr. S.A.A",
+      "createdAt": "2026-10-23T17:11:19.927Z",
+      "id": 12
     }
   ]
 }

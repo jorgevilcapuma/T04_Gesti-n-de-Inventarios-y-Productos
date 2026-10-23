@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CATEGORIES, Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
@@ -17,9 +17,10 @@ export class ProductFormComponent implements OnInit {
   errorMessage = '';
 
   private fb = inject(FormBuilder);
+  private existingProducts: Product[] = [];
 
   form = this.fb.nonNullable.group({
-    sku: ['', [Validators.required, Validators.pattern(/^[A-Z]{3}-\d{3}$/)]],
+    sku: ['', [Validators.required, Validators.pattern(/^[A-Z]{3}-\d{3}$/), (c: AbstractControl) => this.skuTakenValidator(c)]],
     name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
     category: ['', Validators.required],
     price: [0, [Validators.required, Validators.min(0.1)]],
@@ -39,6 +40,10 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.productService.getAll().subscribe({
+      next: (products) => (this.existingProducts = products)
+    });
+
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.productId = Number(id);
@@ -54,6 +59,19 @@ export class ProductFormComponent implements OnInit {
     return control.invalid && (control.touched || control.dirty);
   }
 
+  /** Normaliza el SKU a mayúsculas mientras el usuario escribe. */
+  onSkuInput(event: Event): void {
+    const value = (event.target as HTMLInputElement).value.toUpperCase();
+    this.form.controls.sku.setValue(value, { emitEvent: true });
+  }
+
+  private skuTakenValidator(control: AbstractControl): ValidationErrors | null {
+    const sku = String(control.value ?? '').trim().toUpperCase();
+    if (!sku) return null;
+    const taken = this.existingProducts.some((p) => p.sku.toUpperCase() === sku && p.id !== this.productId);
+    return taken ? { skuTaken: true } : null;
+  }
+
   onSubmit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -61,7 +79,13 @@ export class ProductFormComponent implements OnInit {
     }
     this.saving = true;
     this.errorMessage = '';
-    const product: Product = this.form.getRawValue();
+    const raw = this.form.getRawValue();
+    const product: Product = {
+      ...raw,
+      sku: raw.sku.trim().toUpperCase(),
+      name: raw.name.trim(),
+      supplier: raw.supplier.trim()
+    };
 
     const request$ = this.isEdit
       ? this.productService.update(this.productId!, product)

@@ -10,10 +10,10 @@
     </div>
 
     @if (successMessage) {
-      <div class="alert alert-success">{{ successMessage }}</div>
+      <div class="alert alert-success" role="status" aria-live="polite">{{ successMessage }}</div>
     }
     @if (errorMessage) {
-      <div class="alert alert-error">
+      <div class="alert alert-error" role="alert" aria-live="assertive">
         {{ errorMessage }}
         <button class="btn btn-sm btn-outline retry" (click)="loadProducts()">Reintentar</button>
       </div>

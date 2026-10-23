@@ -6,15 +6,17 @@
     <p class="muted">Formulario reactivo con validaciones en tiempo real. Los datos se envían a la API REST.</p>
 
     @if (errorMessage) {
-      <div class="alert alert-error">{{ errorMessage }}</div>
+      <div class="alert alert-error" role="alert" aria-live="assertive">{{ errorMessage }}</div>
     }
 
     <form class="card form-card" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
       <div class="grid">
         <div class="form-group">
           <label for="sku">SKU *</label>
-          <input id="sku" class="form-control" [class.invalid]="isInvalid('sku')" formControlName="sku" placeholder="ABR-004">
-          @if (isInvalid('sku')) {
+          <input id="sku" class="form-control" [class.invalid]="isInvalid('sku')" formControlName="sku" placeholder="ABR-004" maxlength="7" (input)="onSkuInput($event)">
+          @if (isInvalid('sku') && form.controls.sku.hasError('skuTaken')) {
+            <span class="error-text">Ya existe un producto registrado con este SKU.</span>
+          } @else if (isInvalid('sku')) {
             <span class="error-text">Formato requerido: 3 letras mayúsculas, guion y 3 dígitos (ej. ABR-004).</span>
           }
         </div>
