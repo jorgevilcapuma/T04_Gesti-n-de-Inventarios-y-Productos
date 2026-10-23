@@ -1,0 +1,122 @@
+<!-- [HERO SECTION] Título impactante, subtítulo y CTA principal -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-tag">Sistema Web de Gestión de Inventario</span>
+      <h1>Controla tu inventario <span class="highlight">en tiempo real</span></h1>
+      <p class="hero-sub">
+        ProdManager Pro ayuda a las MYPEs a evitar pérdidas por falta de stock: registra, organiza y monitorea
+        tus productos desde una sola aplicación web.
+      </p>
+      <div class="hero-actions">
+        <a routerLink="/productos" class="btn btn-primary">Ver inventario</a>
+        <a routerLink="/productos/nuevo" class="btn btn-outline btn-on-dark">Registrar producto</a>
+      </div>
+    </div>
+
+    <div class="hero-mockup card">
+      <div class="mockup-header">
+        <span></span><span></span><span></span>
+        <strong>Inventario</strong>
+      </div>
+      <div class="mockup-row"><b>Arroz Costeño 5 kg</b><span class="badge badge-ok">48 und.</span></div>
+      <div class="mockup-row"><b>Aceite Primor 1 L</b><span class="badge badge-low">Stock bajo</span></div>
+      <div class="mockup-row"><b>Lejía Clorox 1 L</b><span class="badge badge-out">Agotado</span></div>
+      <div class="mockup-row"><b>Inca Kola 1.5 L</b><span class="badge badge-ok">36 und.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- [SERVICIOS] 3 tarjetas con características del sistema CRUD -->
+<section id="servicios" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag">Servicios</span>
+      <h2 class="section-title">Todo lo que necesitas para tu almacén</h2>
+      <p class="muted">Funcionalidades CRUD pensadas para administradores de almacén y gestores de ventas.</p>
+    </div>
+    <div class="services-grid">
+      @for (service of services; track service.title) {
+        <article class="card service-card">
+          <div class="service-icon">{{ service.icon }}</div>
+          <h3>{{ service.title }}</h3>
+          <p class="muted">{{ service.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- [NOSOTROS] Información del equipo y propósito del software -->
+<section id="nosotros" class="section section-alt">
+  <div class="container about-grid">
+    <div>
+      <span class="section-tag">Nosotros</span>
+      <h2 class="section-title">¿Por qué ProdManager Pro?</h2>
+      <p class="muted">
+        Las MYPEs pierden hasta un 15% de sus ventas por no controlar su stock en tiempo real. Somos un equipo de
+        estudiantes de Programación Front-End que desarrolló esta SPA en Angular para automatizar el registro y
+        monitoreo del inventario comercial.
+      </p>
+      <ul class="about-list">
+        <li>✔ Single Page Application en Angular</li>
+        <li>✔ Consumo de API REST con HttpClient y RxJS</li>
+        <li>✔ Formularios reactivos con validación en tiempo real</li>
+      </ul>
+    </div>
+    <div class="team-grid">
+      @for (member of team; track member.name) {
+        <div class="card team-card">
+          <div class="avatar">{{ member.initials }}</div>
+          <strong>{{ member.name }}</strong>
+          <span class="muted">{{ member.role }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- [CTA BAR] Llamado a la acción -->
+<section class="cta">
+  <div class="container cta-inner">
+    <div>
+      <h2>¡Empieza a gestionar hoy!</h2>
+      <p>Registra tu primer producto en menos de un minuto.</p>
+    </div>
+    <a routerLink="/productos/nuevo" class="btn btn-light">Comenzar ahora →</a>
+  </div>
+</section>
+
+<!-- [CONTACTO] Formulario de contacto con campos de usuario -->
+<section id="contacto" class="section">
+  <div class="container contact-grid">
+    <div>
+      <span class="section-tag">Contacto</span>
+      <h2 class="section-title">¿Tienes preguntas?</h2>
+      <p class="muted">Escríbenos y el equipo de ProdManager Pro te responderá a la brevedad.</p>
+      <p class="contact-info">📍 Pachacámac, Lima – Perú<br>✉ prodmanager.pro&#64;vallegrande.edu.pe</p>
+    </div>
+
+    <form class="card contact-form" [formGroup]="contactForm" (ngSubmit)="sendContact()" novalidate>
+      @if (contactSent) {
+        <div class="alert alert-success">¡Gracias! Tu mensaje fue enviado correctamente.</div>
+      }
+      <div class="form-group">
+        <label for="c-name">Nombre</label>
+        <input id="c-name" class="form-control" [class.invalid]="isInvalid('name')" formControlName="name" placeholder="Tu nombre">
+        @if (isInvalid('name')) { <span class="error-text">Ingresa al menos 3 caracteres.</span> }
+      </div>
+      <div class="form-group">
+        <label for="c-email">Correo</label>
+        <input id="c-email" type="email" class="form-control" [class.invalid]="isInvalid('email')" formControlName="email" placeholder="correo@ejemplo.com">
+        @if (isInvalid('email')) { <span class="error-text">Ingresa un correo válido.</span> }
+      </div>
+      <div class="form-group">
+        <label for="c-message">Mensaje</label>
+        <textarea id="c-message" rows="4" class="form-control" [class.invalid]="isInvalid('message')" formControlName="message" placeholder="¿En qué podemos ayudarte?"></textarea>
+        @if (isInvalid('message')) { <span class="error-text">El mensaje debe tener al menos 10 caracteres.</span> }
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+    </form>
+  </div>
+</section>

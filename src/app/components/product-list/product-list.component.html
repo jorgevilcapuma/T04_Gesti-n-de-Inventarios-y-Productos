@@ -1,0 +1,90 @@
+<section class="section page">
+  <div class="container">
+    <div class="page-head">
+      <div>
+        <span class="section-tag">Inventario</span>
+        <h1 class="section-title">Listado de productos</h1>
+        <p class="muted">Datos consumidos desde la API REST mediante <code>HttpClient</code>.</p>
+      </div>
+      <a routerLink="/productos/nuevo" class="btn btn-primary">+ Nuevo producto</a>
+    </div>
+
+    @if (successMessage) {
+      <div class="alert alert-success">{{ successMessage }}</div>
+    }
+    @if (errorMessage) {
+      <div class="alert alert-error">
+        {{ errorMessage }}
+        <button class="btn btn-sm btn-outline retry" (click)="loadProducts()">Reintentar</button>
+      </div>
+    }
+
+    <div class="stats">
+      <div class="card stat"><span>Productos</span><strong>{{ products.length }}</strong></div>
+      <div class="card stat"><span>Unidades en stock</span><strong>{{ totalStock | number }}</strong></div>
+      <div class="card stat"><span>Valor del inventario</span><strong>{{ inventoryValue | currency:'PEN':'S/ ' }}</strong></div>
+      <div class="card stat stat-warn"><span>Stock bajo / agotado</span><strong>{{ lowStockCount }}</strong></div>
+    </div>
+
+    <div class="card table-card">
+      <div class="toolbar">
+        <input class="form-control" type="search" placeholder="Buscar por nombre o SKU..." [value]="searchTerm" (input)="onSearch($event)">
+        <select class="form-control" [value]="selectedCategory" (change)="onCategory($event)">
+          <option value="">Todas las categorías</option>
+          @for (cat of categories; track cat) {
+            <option [value]="cat">{{ cat }}</option>
+          }
+        </select>
+      </div>
+
+      @if (loading) {
+        <p class="empty">Cargando productos desde la API...</p>
+      } @else {
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>SKU</th>
+                <th>Producto</th>
+                <th>Categoría</th>
+                <th class="num">Precio</th>
+                <th class="num">Stock</th>
+                <th>Estado</th>
+                <th>Proveedor</th>
+                <th class="actions">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (product of filteredProducts; track product.id; let i = $index) {
+                <tr>
+                  <td>{{ i + 1 }}</td>
+                  <td class="sku">{{ product.sku }}</td>
+                  <td><strong>{{ product.name }}</strong></td>
+                  <td><span class="badge badge-cat">{{ product.category }}</span></td>
+                  <td class="num">{{ product.price | currency:'PEN':'S/ ' }}</td>
+                  <td class="num">{{ product.stock }}</td>
+                  <td>
+                    @switch (stockStatus(product)) {
+                      @case ('out') { <span class="badge badge-out">Agotado</span> }
+                      @case ('low') { <span class="badge badge-low">Stock bajo</span> }
+                      @default { <span class="badge badge-ok">Disponible</span> }
+                    }
+                  </td>
+                  <td class="muted">{{ product.supplier }}</td>
+                  <td class="actions">
+                    <a [routerLink]="['/productos/editar', product.id]" class="btn btn-sm btn-outline">Editar</a>
+                    <button class="btn btn-sm btn-danger" (click)="deleteProduct(product)">Eliminar</button>
+                  </td>
+                </tr>
+              } @empty {
+                <tr><td colspan="9" class="empty">No se encontraron productos.</td></tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <p class="table-foot muted">Mostrando {{ filteredProducts.length }} de {{ products.length }} registros</p>
+      }
+    </div>
+  </div>
+</section>

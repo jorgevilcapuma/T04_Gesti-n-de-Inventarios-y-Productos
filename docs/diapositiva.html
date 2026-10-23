@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>ProdManager Pro · Diapositiva Grupal</title>
+<style>
+  @page { size: 1600px 900px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #e2e8f0; font-family: 'Segoe UI', system-ui, sans-serif; color: #1e293b;
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .slide { width: 1600px; height: 900px; margin: 0 auto; background: #f5f7fb; padding: 32px 40px;
+           display: grid; grid-template-rows: auto 1fr; gap: 20px; overflow: hidden; }
+  @media print { body { background: none; } }
+
+  header { display: flex; align-items: center; justify-content: space-between;
+           background: #0f2140; color: #fff; border-radius: 18px; padding: 18px 28px; }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .logo { width: 64px; height: 64px; border-radius: 16px; display: grid; place-items: center;
+          background: linear-gradient(135deg, #1877f2, #06b6d4); font-weight: 800; font-size: 26px; }
+  header h1 { font-size: 34px; }
+  header h1 span { color: #06b6d4; }
+  header p { color: #cbd5e1; font-size: 16px; }
+  .meta { text-align: right; font-size: 14px; color: #cbd5e1; line-height: 1.6; }
+  .meta b { color: #fff; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1.25fr 1.25fr; grid-template-rows: 1fr 1fr; gap: 18px; min-height: 0; }
+  .box { background: #fff; border: 1px solid #e2e8f0; border-radius: 18px; padding: 18px 20px;
+         box-shadow: 0 6px 20px rgba(15,33,64,.07); display: flex; flex-direction: column; min-height: 0; }
+  .box h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: #1877f2; margin-bottom: 10px; }
+  .box h2 i { font-style: normal; background: #1877f2; color: #fff; border-radius: 6px; padding: 1px 7px; margin-right: 6px; }
+  .box p, .box li { font-size: 14px; line-height: 1.5; }
+  .box ul { padding-left: 18px; }
+  .muted { color: #64748b; }
+
+  .team { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .member { display: flex; align-items: center; gap: 10px; }
+  .photo { width: 58px; height: 58px; border-radius: 50%; border: 3px solid #1877f2; background: #f1f6ff;
+           flex-shrink: 0; object-fit: cover; display: grid; place-items: center; font-size: 11px; color: #1877f2; font-weight: 700; }
+  .member b { display: block; font-size: 14px; }
+  .member span { font-size: 12px; color: #1877f2; font-weight: 600; }
+
+  .shot { flex: 1; min-height: 0; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden; }
+  .shot img { width: 100%; display: block; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .tags span { font-size: 11px; background: #e0edff; color: #1460c4; padding: 2px 8px; border-radius: 999px; font-weight: 600; }
+
+  .tech { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; min-height: 0; }
+  pre { font-family: Consolas, monospace; font-size: 12px; line-height: 1.45; color: #1460c4; }
+  .flow { display: flex; flex-direction: column; gap: 6px; }
+  .step { border-radius: 8px; color: #fff; padding: 7px 10px; font-size: 12px; }
+  .step b { display: block; font-size: 13px; }
+  .s1 { background: #06b6d4; } .s2 { background: #1877f2; } .s3 { background: #0f2140; } .s4 { background: #10b981; }
+  .arrow { text-align: center; color: #94a3b8; font-size: 11px; line-height: 1; }
+
+  .crud { display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; flex: 1; min-height: 0; }
+  .crud .shot img { object-fit: cover; object-position: top; height: 100%; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <!-- 1. Identidad -->
+  <header>
+    <div class="brand">
+      <div class="logo">PM</div>
+      <div>
+        <h1>ProdManager <span>Pro</span> v1.0</h1>
+        <p>Sistema Web de Gestión de Inventario y Productos · SPA en Angular + API REST</p>
+      </div>
+    </div>
+    <div class="meta">
+      <b>Programación Front-End · Sesión 12</b><br>
+      Docente: Valery Giselle Chumpitaz Caycho<br>
+      github.com/jorgevilcapuma/T04_Gesti-n-de-Inventarios-y-Productos
+    </div>
+  </header>
+
+  <div class="grid">
+    <!-- 2. Descripción & Objetivos -->
+    <section class="box">
+      <h2><i>2</i>Problema & Solución</h2>
+      <p><b>Problema:</b> las MYPEs pierden hasta un 15% de ventas por no controlar su stock en tiempo real.</p>
+      <p style="margin-top:6px"><b>Solución:</b> una SPA que registra, organiza y alerta sobre stock bajo o agotado.</p>
+      <p style="margin-top:6px"><b>Público:</b> administradores de almacén y gestores de ventas.</p>
+      <ul class="muted" style="margin-top:6px">
+        <li>Landing Page de presentación</li>
+        <li>API REST con HttpClient + RxJS</li>
+        <li>Reactive Forms con validación</li>
+      </ul>
+    </section>
+
+    <!-- 3. Integrantes (reemplazar src de las fotos y nombres) -->
+    <section class="box">
+      <h2><i>3</i>Integrantes</h2>
+      <div class="team">
+        <div class="member"><div class="photo">FOTO 1</div><div><b>Jorge Vilcapuma Trujillo</b><span>Líder de Maquetación · Frontend</span><p class="muted" style="font-size:12px">UI/UX, Landing Page, Servicios & API REST</p></div></div>
+        <div class="member"><div class="photo">FOTO 2</div><div><b>Daniel Yerson Leyva Cespedes</b><span>Frontend Developer · QA</span><p class="muted" style="font-size:12px">Formularios, Validaciones, Pruebas & README</p></div></div>
+      </div>
+    </section>
+
+    <!-- 4. Landing Page -->
+    <section class="box">
+      <h2><i>4</i>Landing Page</h2>
+      <div class="shot"><img src="img/landing.png" alt="Landing Page"></div>
+      <div class="tags"><span>Navbar</span><span>Hero</span><span>Servicios</span><span>Nosotros</span><span>CTA</span><span>Contacto</span><span>Footer</span></div>
+    </section>
+
+    <!-- 5. Estructura técnica -->
+    <section class="box" style="grid-column: 1 / span 2">
+      <h2><i>5</i>Estructura Técnica: Angular + API REST</h2>
+      <div class="tech">
+<pre>src/app/
+├── components/
+│   ├── landing/
+│   ├── product-list/
+│   └── product-form/
+├── services/
+│   └── product.service.ts
+├── models/
+│   └── product.model.ts
+├── app.component.ts
+└── app.module.ts
+db.json  ← JSON Server</pre>
+        <div class="flow">
+          <div class="step s1"><b>1. API REST · JSON Server</b>GET / POST / PUT / DELETE  →  localhost:3000/products</div>
+          <div class="arrow">▼</div>
+          <div class="step s2"><b>2. ProductService</b>HttpClient.get&lt;Product[]&gt;() → Observable RxJS</div>
+          <div class="arrow">▼</div>
+          <div class="step s3"><b>3. ProductListComponent</b>subscribe() y guarda products[]</div>
+          <div class="arrow">▼</div>
+          <div class="step s4"><b>4. Template HTML</b>@for renderiza la tabla de productos</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Evidencia CRUD -->
+    <section class="box">
+      <h2><i>6</i>Evidencia CRUD</h2>
+      <div class="crud">
+        <div class="shot"><img src="img/listado.png" alt="Tabla con 10 registros"></div>
+        <div class="shot"><img src="img/formulario.png" alt="Formulario de registro"></div>
+      </div>
+      <div class="tags"><span>10 registros</span><span>Crear</span><span>Editar</span><span>Eliminar</span><span>Búsqueda y filtros</span></div>
+    </section>
+  </div>
+</div>
+</body>
+</html>

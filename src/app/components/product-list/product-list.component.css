@@ -1,0 +1,50 @@
+.page { padding-top: 48px; }
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.retry { margin-left: 12px; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat { padding: 18px 20px; display: flex; flex-direction: column; }
+.stat span { color: var(--muted); font-size: 0.85rem; }
+.stat strong { font-size: 1.6rem; color: var(--navy); }
+.stat-warn strong { color: var(--amber); }
+
+.table-card { padding: 20px; }
+.toolbar { display: grid; grid-template-columns: 1fr 240px; gap: 12px; margin-bottom: 16px; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th {
+  text-align: left;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 600;
+  padding: 12px;
+  white-space: nowrap;
+}
+th:first-child { border-top-left-radius: 10px; }
+th:last-child { border-top-right-radius: 10px; }
+td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tbody tr:nth-child(even) { background: #f8fafc; }
+tbody tr:hover { background: #eef5ff; }
+.num { text-align: right; white-space: nowrap; }
+.sku { font-family: Consolas, monospace; color: var(--muted); }
+.actions { white-space: nowrap; text-align: right; }
+.actions .btn + .btn { margin-left: 6px; }
+.empty { text-align: center; padding: 32px; color: var(--muted); }
+.table-foot { margin: 12px 0 0; font-size: 0.85rem; }
+
+@media (max-width: 900px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .toolbar { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,27 @@
+.page { padding-top: 40px; }
+.narrow { max-width: 760px; }
+.back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.back:hover { color: var(--primary); }
+.form-card { padding: 32px; margin-top: 24px; }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.full { grid-column: 1 / -1; }
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+  .form-card { padding: 20px; }
+}

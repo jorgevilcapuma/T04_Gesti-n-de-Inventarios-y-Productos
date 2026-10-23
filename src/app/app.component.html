@@ -1,0 +1,51 @@
+<!-- [NAVBAR] Menú superior con logo, enlaces y botón de acceso -->
+<header class="navbar">
+  <div class="container nav-inner">
+    <a routerLink="/" class="brand" (click)="closeMenu()">
+      <span class="brand-logo">PM</span>
+      <span>ProdManager <strong>Pro</strong></span>
+    </a>
+
+    <button class="nav-toggle" (click)="toggleMenu()" aria-label="Abrir menú">☰</button>
+
+    <nav class="nav-links" [class.open]="menuOpen">
+      <a routerLink="/" fragment="servicios" (click)="closeMenu()">Servicios</a>
+      <a routerLink="/" fragment="nosotros" (click)="closeMenu()">Nosotros</a>
+      <a routerLink="/" fragment="contacto" (click)="closeMenu()">Contacto</a>
+      <a routerLink="/productos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Inventario</a>
+      <a routerLink="/productos/nuevo" class="btn btn-primary btn-sm" (click)="closeMenu()">+ Registrar</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<!-- [FOOTER] Derechos reservados, redes y enlaces secundarios -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a routerLink="/" class="brand brand-light">
+        <span class="brand-logo">PM</span>
+        <span>ProdManager <strong>Pro</strong></span>
+      </a>
+      <p class="muted-light">Sistema web de gestión de inventario y productos para MYPEs.</p>
+    </div>
+    <div>
+      <h4>Enlaces</h4>
+      <a routerLink="/" fragment="servicios">Servicios</a>
+      <a routerLink="/" fragment="nosotros">Nosotros</a>
+      <a routerLink="/productos">Inventario</a>
+    </div>
+    <div>
+      <h4>Redes</h4>
+      <a href="https://github.com/jorgevilcapuma/T04_Gesti-n-de-Inventarios-y-Productos" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © {{ year }} ProdManager Pro · Programación Front-End · Valle Grande. Todos los derechos reservados.
+  </div>
+</footer>

@@ -1,0 +1,114 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "sku": "ABR-001",
+      "name": "Arroz Costeño Extra 5 kg",
+      "category": "Abarrotes",
+      "price": 24.9,
+      "stock": 48,
+      "minStock": 10,
+      "supplier": "Alicorp S.A.A.",
+      "createdAt": "2026-10-01T09:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "sku": "ABR-002",
+      "name": "Aceite Primor 1 L",
+      "category": "Abarrotes",
+      "price": 10.5,
+      "stock": 6,
+      "minStock": 12,
+      "supplier": "Alicorp S.A.A.",
+      "createdAt": "2026-10-01T09:05:00.000Z"
+    },
+    {
+      "id": 3,
+      "sku": "ABR-003",
+      "name": "Azúcar Rubia Cartavio 1 kg",
+      "category": "Abarrotes",
+      "price": 4.2,
+      "stock": 75,
+      "minStock": 20,
+      "supplier": "Cartavio S.A.A.",
+      "createdAt": "2026-10-02T10:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "sku": "BEB-001",
+      "name": "Inca Kola 1.5 L",
+      "category": "Bebidas",
+      "price": 6.8,
+      "stock": 36,
+      "minStock": 15,
+      "supplier": "Lindley S.A.",
+      "createdAt": "2026-10-02T10:30:00.000Z"
+    },
+    {
+      "id": 5,
+      "sku": "BEB-002",
+      "name": "Agua San Luis 625 ml",
+      "category": "Bebidas",
+      "price": 1.8,
+      "stock": 120,
+      "minStock": 30,
+      "supplier": "Lindley S.A.",
+      "createdAt": "2026-10-03T08:15:00.000Z"
+    },
+    {
+      "id": 6,
+      "sku": "LAC-001",
+      "name": "Leche Gloria Evaporada 400 g",
+      "category": "Lácteos",
+      "price": 4.5,
+      "stock": 8,
+      "minStock": 24,
+      "supplier": "Gloria S.A.",
+      "createdAt": "2026-10-03T08:40:00.000Z"
+    },
+    {
+      "id": 7,
+      "sku": "LAC-002",
+      "name": "Yogurt Laive Fresa 1 L",
+      "category": "Lácteos",
+      "price": 7.9,
+      "stock": 18,
+      "minStock": 10,
+      "supplier": "Laive S.A.",
+      "createdAt": "2026-10-04T11:00:00.000Z"
+    },
+    {
+      "id": 8,
+      "sku": "LIM-001",
+      "name": "Detergente Bolívar 2.6 kg",
+      "category": "Limpieza",
+      "price": 32.9,
+      "stock": 14,
+      "minStock": 6,
+      "supplier": "Alicorp S.A.A.",
+      "createdAt": "2026-10-05T09:20:00.000Z"
+    },
+    {
+      "id": 9,
+      "sku": "LIM-002",
+      "name": "Lejía Clorox 1 L",
+      "category": "Limpieza",
+      "price": 5.3,
+      "stock": 0,
+      "minStock": 10,
+      "supplier": "Clorox Perú",
+      "createdAt": "2026-10-05T09:45:00.000Z"
+    },
+    {
+      "id": 10,
+      "sku": "CUP-001",
+      "name": "Shampoo H&S 375 ml",
+      "category": "Cuidado Personal",
+      "price": 18.9,
+      "stock": 22,
+      "minStock": 8,
+      "supplier": "P&G Perú",
+      "createdAt": "2026-10-06T14:00:00.000Z"
+    }
+  ]
+}
